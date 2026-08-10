@@ -10,5 +10,9 @@ RUN a2enmod rewrite
 # Copy your app.php file into the web server directory
 COPY app.php /var/www/html/index.php
 
+# FIX: Grant the server read and write permissions to the file and folder
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
 # Expose port 80 for web traffic
 EXPOSE 80
